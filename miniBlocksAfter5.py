@@ -244,8 +244,15 @@ except Exception as e:
     print(f"1. Path exists: {train_data_path}")
     print(f"2. Files exist: {len(os.listdir(train_data_path))} .npy files found")
     print(f"3. Sample file check: {os.path.exists(os.path.join(train_data_path, train_df['ID'].values[0] + '.npy'))}")
-X_batch, y_batch = train_ds[0]
-X_batch.shape, y_batch.shape
-y_batch
-X_val_batch, y_val_batch = val_ds[0]
-X_val_batch.shape, y_val_batch.shape
+# Inspect one training batch
+X_batch, y_batch = train_gen[0]
+print("Train batch shape:", X_batch.shape)
+print("Train labels shape:", y_batch.shape)
+print("Train label distribution:", np.unique(y_batch, return_counts=True))
+
+# Inspect one validation batch
+X_val_batch, y_val_batch = val_gen[0]
+print("Validation batch shape:", X_val_batch.shape)
+print("Validation labels shape:", y_val_batch.shape)
+print("Validation label distribution:", np.unique(y_val_batch, return_counts=True))
+
